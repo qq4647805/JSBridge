@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="true">
+  <title>test JSBridge</title>
+</head>
+<body>
+  <h1>JSBridge测试</h1>
+  <p onclick="onEvent()">jsbrage.on('myevent') 绑定监听事件</p>
+  <p onclick="JSBridgeDispatch('myevent','事件触发成功!');">JSBridgeDispatch || jsbrage.dispatchEvent('myevent') 触发监听事件</p>
+  <p onclick="offEvent()">解绑监听事件</p>
+  <p onclick="jsbrage.callNative('wenba://xuebajun?view=purchase')">页面：跳转商品列表页面</p>
+  <p onclick="jsbrage.callNative('wenba://xuebajun?view=live')">页面：跳转拍照答疑页面</p>
+<pre onclick="callNative()">
+调用native,等待回调 JSBridgeCB() || jsbrage.nativeCB()
+
+例子:
+jsbrage.callNative('foo',{a:'foo',b:['测试']},function(data) {
+  alert(data);
+})
+</pre>
+<script type="text/javascript" src="lib/JSBridge.min.js"></script></body>
+<script type="text/javascript">
+var jsbrage;
+window.onload=function() {
+  jsbrage=new JSBridge();
+}
+var off;
+function onEvent(){
+  off=jsbrage.on('myevent',function(e) {
+    alert(e.data);
+  })
+  alert('绑定成功!');
+}
+function offEvent(){
+  off && off();
+  alert('解绑成功!');
+}
+function callNative(){
+  jsbrage.callNative('foo',{a:'foo',b:['测试']},function(data) {
+    alert(data);
+  })
+}
+</script>
+</html>
