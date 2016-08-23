@@ -31,7 +31,8 @@ npm run test
   jsbrage.callNative('wenba://xuebajun?view=purchase');
 
   //native触发回调事件(主要是给native主动通知js用的)
-  JSBridgeCB('cbname','data');
+  window.JSBridgeCB('cbname','data');
+  jsbrage.nativeCB('cbname','data');
 
   //绑定监听事件
   var unbind=jsbrage.on('myevent',function(e) {
@@ -40,7 +41,7 @@ npm run test
   //解绑监听事件
   unbind()
   //触发监听事件(主要是给native主动通知js用的)
-  JSBridgeDispatch('myevent','data');
+  window.JSBridgeDispatch('myevent','data');
   jsbrage.dispacth('myevent','data');
 </script>
 ```
