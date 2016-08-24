@@ -9,7 +9,7 @@ var ENV = process.env.NODE_ENV || 'development';
 (process.env.N==1) && (ENV='production')
 module.exports = {
   entry: {
-    app:APP_PATH+'/index.js',
+    app:APP_PATH+'/index.jsx',
   },
   output: {
     path: BUILD_PATH,
@@ -18,7 +18,7 @@ module.exports = {
   module:{
     loaders:[
       {
-          test: /\.js$/,
+          test: /\.jsx?$/,
           exclude: /node_modules/,
           loader: 'babel-loader'
       },
