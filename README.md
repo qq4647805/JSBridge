@@ -30,7 +30,7 @@ npm run test
   //兼容原有的schema
   jsbrage.callNative('wenba://xuebajun?view=purchase');
 
-  //native触发回调事件(主要是给native主动通知js用的)
+  //native触发回调事件(主要是给native回调js用的)
   window.JSBridgeCB('cbname','data');
   jsbrage.nativeCB('cbname','data');
 
