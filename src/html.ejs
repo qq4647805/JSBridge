@@ -23,6 +23,7 @@ jsbridge.callNative('foo',{a:'foo',b:['测试']},function(data) {
   alert(data);
 })
 </pre>
+<p onclick="share()">新的分享测试!!!</p>
 </body>
 <script type="text/javascript">
 var jsbridge;
@@ -43,6 +44,34 @@ function offEvent(){
 function callNative(){
   jsbridge.callNative('foo',{a:'foo',b:['测试']},function(data) {
     alert(data.a);
+  })
+}
+function share() {
+  var obj = {
+    title: 'test title 百度',
+    content: 'test content 百度首页',
+    imgUrl: 'https://www.baidu.com/',
+    shareUrl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
+    channel: 47
+  }
+  jsbridge.callNative('share',obj,function(data) {
+    switch (data.status) {
+      case 0:
+        alert('分享失败')
+        return ;
+      case 1:
+        alert('分享成功')
+        return ;
+      case 2:
+        alert('app外取消')
+        return ;
+      case 3:
+        alert('app内点击取消按钮或分享框上方遮罩')
+        return ;
+      default:
+        alert(JSON.stringify(data))
+        return;
+    }
   })
 }
 </script>
