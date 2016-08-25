@@ -48,16 +48,16 @@ class JSBridge {
     return this.cb_length;
   }
   nativeCB=(name,data='{}')=>{
-    alert('name:'+name);
-    alert('data:'+data);
     if(this._.cbMap[name]){
       const cb=this._.cbMap[name];
-      alert('fn:'+cb);
-      cb(JSON.parse(data));
+      try{
+        cb(JSON.parse(data));
+      }catch(e){
+        return e.message
+      }
       delete this._.cbMap[name];
       return true;
     }else{
-      alert('nofn');
       console.error('no callback:'+name);
       return false;
     }
