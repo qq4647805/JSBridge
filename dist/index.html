@@ -31,6 +31,7 @@ window.onload=function() {
   jsbridge=new JSBridge();
 }
 var off;
+alert(111);
 function onEvent(){
   off=jsbridge.on('myevent',function(e) {
     alert(e.data);
