@@ -9,7 +9,11 @@
     "test:watch": "karma start --autoWatch=true --singleRun=false",
     "test": "karma start",
     "start": "webpack-dev-server --hot --inline",
-    "build": "rm -rf dist && webpack --progress --profile --colors"
+    "build": "rm -rf dist && webpack --progress --profile --colors",
+    "c":"git commit -am 'update'",
+    "p":"git push",
+    "cp":"npm run c && npm run p",
+    "bcp":"npm run build && npm run c && npm run p"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",
