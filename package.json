@@ -10,9 +10,9 @@
     "test": "karma start",
     "start": "webpack-dev-server --hot --inline",
     "build": "rm -rf dist && webpack --progress --profile --colors",
-    "c":"git commit -am 'update'",
+    "c":"git add -A && git commit -am 'test update'",
     "p":"git push",
-    "u":"curl 'http://10.2.1.22:9923/pull?path=/www/rd09/static/JSBridge&to=master:master&from=origin'",
+    "u":"curl 'http://10.2.1.22:9923/pull?path=/home/wenba/www/rd09/static/JSBridge&to=master:master&from=origin'",
     "cp":"npm run c && npm run p",
     "bcp":"npm run build && npm run c && npm run p",
     "bcpu":"npm run build && npm run c && npm run p && npm run u"

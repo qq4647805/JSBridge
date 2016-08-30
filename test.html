@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <form action="" method="post" onsubmit="return onSubmit()">
+    <input type="text" id="name">
+    <button onclick="check()">submit</button>
+  </form>
+  <script type="text/javascript">
+    var can_submit=false;
+    function onSubmit() {
+      if(can_submit){
+        alert('可以提交')
+        return true;
+      }else{
+        alert('不能提交')
+        return false;
+      }
+    }
+    function check(){
+      var name=document.getElementById('name').value;
+      if(name){
+        can_submit=true;
+      }else{
+        can_submit=false;
+      }
+    }
+  </script>
+</body>
+</html>
