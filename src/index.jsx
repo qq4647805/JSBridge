@@ -10,7 +10,7 @@ class JSBridge {
     const ua=/xuebajun\/(\d+)/.exec(navigator.userAgent);
     if(ua){
       this.XBJ_APP=true;
-      this.VERSION=ua[1];
+      this.VERSION=ua[1]-0;
     }else{
       this.XBJ_APP=false;
       this.VERSION=0;
@@ -24,6 +24,18 @@ class JSBridge {
   	// 	this._.doc.documentElement.appendChild(this._.iframe);
     // }
     // return this._.iframe;
+  }
+  extends(method,data){
+    switch (method) {
+      case 'share':
+        if(this.XBJ_APP && this.VERSION>5000002){
+          return false;
+        }else{
+          return 'wenba://share?'+ this.param(data);
+        }
+      default:
+        return false;
+    }
   }
   guid(){
     return (((new Date().getTime()*Math.random()+Math.random())*0x10000)|0).toString(16).substring(1)
@@ -54,7 +66,9 @@ class JSBridge {
     }
     const guid=this.guid();
     this._.cbMap[guid]=cb;
-    const url=`wenba://xuebajun?action=${method}&data=${JSON.stringify(data)}&cb=${guid}`;
+    const extend_url=this.extends(method,data);
+    const url=extend_url?extend_url:`wenba://xuebajun?action=${method}&data=${JSON.stringify(data)}&cb=${guid}`;
+    alert(url);
     this.schema(url);
     return this.cb_length;
   }
