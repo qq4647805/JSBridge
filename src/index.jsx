@@ -55,6 +55,7 @@ class JSBridge {
     return Object.keys(this._.cbMap).length;
   }
   schema(url){
+    alert(url);
     // const iframe=this._();
     // iframe.src=url;
     location.href=url;
@@ -64,11 +65,14 @@ class JSBridge {
       this.schema(method);
       return this.cb_length;
     }
+    const extend_url=this.extends(method,data);
+    if(extend_url){
+      this.schema(extend_url);
+      return this.cb_length;
+    }
     const guid=this.guid();
     this._.cbMap[guid]=cb;
-    const extend_url=this.extends(method,data);
-    const url=extend_url?extend_url:`wenba://xuebajun?action=${method}&data=${JSON.stringify(data)}&cb=${guid}`;
-    alert(url);
+    const url=`wenba://xuebajun?action=${method}&data=${JSON.stringify(data)}&cb=${guid}`;
     this.schema(url);
     return this.cb_length;
   }
