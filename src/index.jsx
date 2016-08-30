@@ -4,7 +4,7 @@ class JSBridge {
     this._.cbMap={};
     !glo_cbfn || (window[glo_cbfn]=this.nativeCB)
     !glo_dp || (window[glo_dp]=this.dispatch)
-    console.log(navigator.userAgent);
+    alert(navigator.userAgent);
   }
   _(){
     // if(!this._.iframe){
