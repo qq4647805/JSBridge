@@ -4,9 +4,19 @@ class JSBridge {
     this._.cbMap={};
     !glo_cbfn || (window[glo_cbfn]=this.nativeCB)
     !glo_dp || (window[glo_dp]=this.dispatch)
-    alert(/xuebajun1\/(\d+)/.exec(navigator.userAgent));
+    this._();
   }
   _(){
+    const ua=/xuebajun\/(\d+)/.exec(navigator.userAgent);
+    if(ua){
+      this.XBJ_APP=true;
+      this.VERSION=ua[1];
+    }else{
+      this.XBJ_APP=false;
+      this.VERSION=0;
+    }
+    alert(this.XBJ_APP);
+    alert(this.VERSION);
     // if(!this._.iframe){
     //   this._.iframe=this._.doc.createElement('iframe');
   	// 	this._.iframe.id = 'JSBridge_iframe';
