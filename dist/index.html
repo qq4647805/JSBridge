@@ -24,6 +24,7 @@ jsbridge.callNative('foo',{a:'foo',b:['测试']},function(data) {
 })
 </pre>
 <p onclick="share()">新的分享测试!!!</p>
+<p onclick="openurl()">在默认浏览器打开连接</p>
 <script type="text/javascript" src="lib/JSBridge.min.js"></script></body>
 <script type="text/javascript">
 var jsbridge;
@@ -44,6 +45,11 @@ function offEvent(){
 function callNative(){
   jsbridge.callNative('foo',{a:'foo',b:['测试']},function(data) {
     alert(data.a);
+  })
+}
+function openurl() {
+  jsbridge.callNative('openInBrowser',{url:'https://www.baidu.com/'},function(data) {
+    alert('打开了百度');
   })
 }
 function share() {
