@@ -53,7 +53,6 @@ class JSBridge {
     return Object.keys(this._.cbMap).length;
   }
   schema(url){
-    alert(url);
     // const iframe=this._();
     // iframe.src=url;
     location.href=url;
