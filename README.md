@@ -20,7 +20,7 @@ npm run build
 npm run test
 ```
 ## demo
-支持AMD,CommonJS,和直接引用
+支持AMD,CommonJS,ES6和直接引用
 ```html
 <script type="text/javascript" src="lib/JSBridge.min.js"></script>
 <script>
