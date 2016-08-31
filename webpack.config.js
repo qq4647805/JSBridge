@@ -14,6 +14,9 @@ module.exports = {
   output: {
     path: BUILD_PATH,
     filename: 'lib/JSBridge.min.js',
+    library: 'JSBridge',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module:{
     loaders:[

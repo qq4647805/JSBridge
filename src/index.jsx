@@ -35,10 +35,10 @@ class JSBridge {
         return false;
     }
   }
-  guid(){
+  guid=()=>{
     return (((new Date().getTime()*Math.random()+Math.random())*0x10000)|0).toString(16).substring(1)
   }
-  param(obj){
+  param=(obj)=>{
   	let arr=[];
   	for (var key in obj) {
   		let value=obj[key];
@@ -105,4 +105,3 @@ class JSBridge {
 }
 export default JSBridge;
 module.exports = JSBridge;
-module && (window.JSBridge=JSBridge)
