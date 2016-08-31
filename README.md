@@ -4,6 +4,11 @@
 ## 安装
 
 ```
+npm install git+ssh://git@116.236.249.238:9922/frontend/JSBridge.git --save
+```
+
+## 运行
+```
 npm install
 ```
 
