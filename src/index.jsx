@@ -55,7 +55,7 @@ class JSBridge {
   schema(url){
     // const iframe=this._();
     // iframe.src=url;
-    location.href=url;
+    location.href=encodeURIComponent(url);
   }
   callNative=(method,data={},cb=function(){})=>{
     if(/wenba:\/\//.test(method)){
