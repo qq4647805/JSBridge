@@ -55,8 +55,7 @@ class JSBridge {
   schema(url){
     // const iframe=this._();
     // iframe.src=url;
-    alert(encodeURIComponent(url));
-    // location.href=encodeURIComponent(url);
+    location.href=url;
   }
   callNative=(method,data={},cb=function(){})=>{
     if(/wenba:\/\//.test(method)){
@@ -70,7 +69,7 @@ class JSBridge {
     }
     const guid=this.guid();
     this._.cbMap[guid]=cb;
-    const url=`wenba://xuebajun?action=${method}&data=${JSON.stringify(data)}&cb=${guid}`;
+    const url=`wenba://xuebajun?action=${method}&data=${encodeURIComponent(JSON.stringify(data))}&cb=${guid}`;
     this.schema(url);
     return this.cb_length;
   }
