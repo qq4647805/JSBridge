@@ -8,8 +8,9 @@ class JSBridge {
   }
   _(){
     const ua=/xuebajun\/([\d\.]+)/.exec(navigator.userAgent);
-    alert(ua[1]);
     if(ua){
+      ua[1]=ua[1].replace(/\./g,'00');
+      alert(ua[1]);
       this.XBJ_APP=true;
       this.VERSION=ua[1]-0;
     }else{
