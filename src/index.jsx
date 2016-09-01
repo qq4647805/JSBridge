@@ -16,7 +16,7 @@ class JSBridge {
       this.VERSION=0;
     }
     alert(this.VERSION);
-    alert(ua);
+    alert(navigator.userAgent);
     // if(!this._.iframe){
     //   this._.iframe=this._.doc.createElement('iframe');
   	// 	this._.iframe.id = 'JSBridge_iframe';
