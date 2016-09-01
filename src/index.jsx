@@ -7,7 +7,8 @@ class JSBridge {
     this._();
   }
   _(){
-    const ua=/xuebajun\/(\d+)/.exec(navigator.userAgent);
+    const ua=/xuebajun\/([\d\.]+)/.exec(navigator.userAgent);
+    alert(ua[1]);
     if(ua){
       this.XBJ_APP=true;
       this.VERSION=ua[1]-0;
@@ -15,7 +16,7 @@ class JSBridge {
       this.XBJ_APP=false;
       this.VERSION=0;
     }
-    alert(this.VERSION);
+    // alert(this.VERSION);
     alert(navigator.userAgent);
     // if(!this._.iframe){
     //   this._.iframe=this._.doc.createElement('iframe');
