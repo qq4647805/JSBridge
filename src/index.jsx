@@ -10,7 +10,6 @@ class JSBridge {
     const ua=/xuebajun\/([\d\.]+)/.exec(navigator.userAgent);
     if(ua){
       ua[1]=ua[1].replace(/\./g,'00');
-      alert(ua[1]);
       this.XBJ_APP=true;
       this.VERSION=ua[1]-0;
     }else{
@@ -18,7 +17,6 @@ class JSBridge {
       this.VERSION=0;
     }
     // alert(this.VERSION);
-    alert(navigator.userAgent);
     // if(!this._.iframe){
     //   this._.iframe=this._.doc.createElement('iframe');
   	// 	this._.iframe.id = 'JSBridge_iframe';
