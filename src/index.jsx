@@ -5,6 +5,7 @@ class JSBridge {
     !glo_cbfn || (window[glo_cbfn]=this.nativeCB)
     !glo_dp || (window[glo_dp]=this.dispatch)
     this._();
+    alert(1);
   }
   _(){
     const ua=/xuebajun\/([\d\.]+)/.exec(navigator.userAgent);
