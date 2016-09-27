@@ -7,14 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="HandheldFriendly" content="true">
   <title>test JSBridge</title>
-  <style>
-
-  </style>
 </head>
 <body>
   <h1>JSBridge测试</h1>
   <p onclick="onEvent()">jsbridge.on('myevent') 绑定监听事件</p>
-  <p onclick="JSBridgeDispatch('myevent','事件触发成功!');">JSBridgeDispatch || jsbridge.dispatchEvent('myevent') 触发监听事件</p>
+  <p onclick="console.log(JSBridgeDispatch('myevent','事件触发成功!'));">JSBridgeDispatch || jsbridge.dispatchEvent('myevent') 触发监听事件</p>
   <p onclick="offEvent()">解绑监听事件</p>
   <p onclick="jsbridge.callNative('wenba://xuebajun?view=purchase')">页面：跳转商品列表页面</p>
   <p onclick="jsbridge.callNative('wenba://xuebajun?view=live')">页面：跳转拍照答疑页面</p>
@@ -40,7 +37,6 @@
   </div>
   <img src="" id="uploadImg">
   <p id="imgTxt"></p>
-  <script type="text/javascript" src="lib/JSBridge.min.js"></script></body>
   <script type="text/javascript">
   var jsbridge;
   window.onload=function() {
@@ -144,5 +140,5 @@
     })
   }
   </script>
-</body>
+<script type="text/javascript" src="lib/JSBridge.min.js"></script></body>
 </html>

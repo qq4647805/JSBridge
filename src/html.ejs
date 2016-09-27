@@ -11,74 +11,134 @@
 <body>
   <h1>JSBridge测试</h1>
   <p onclick="onEvent()">jsbridge.on('myevent') 绑定监听事件</p>
-  <p onclick="JSBridgeDispatch('myevent','事件触发成功!');">JSBridgeDispatch || jsbridge.dispatchEvent('myevent') 触发监听事件</p>
+  <p onclick="console.log(JSBridgeDispatch('myevent','事件触发成功!'));">JSBridgeDispatch || jsbridge.dispatchEvent('myevent') 触发监听事件</p>
   <p onclick="offEvent()">解绑监听事件</p>
   <p onclick="jsbridge.callNative('wenba://xuebajun?view=purchase')">页面：跳转商品列表页面</p>
   <p onclick="jsbridge.callNative('wenba://xuebajun?view=live')">页面：跳转拍照答疑页面</p>
-<pre onclick="callNative()">
-调用native,等待回调 JSBridgeCB() || jsbridge.nativeCB()
-anrdoid活ios只要执行类似JSBridgeCB('scd3fdfs','{"bar":"来自native的消息!"}')
-例子:
-jsbridge.callNative('foo',{a:'foo',b:['测试']},function(data) {
-  alert(data);
-})
-</pre>
-<p onclick="share()">新的分享测试!!!</p>
-<p onclick="openurl()">在默认浏览器打开连接</p>
-</body>
-<script type="text/javascript">
-var jsbridge;
-window.onload=function() {
-  jsbridge=new JSBridge();
-}
-var off;
-function onEvent(){
-  off=jsbridge.on('myevent',function(e) {
-    alert(e.data);
-  })
-  alert('绑定成功!');
-}
-function offEvent(){
-  off && off();
-  alert('解绑成功!');
-}
-function callNative(){
+  <pre onclick="callNative()">
+  调用native,等待回调 JSBridgeCB() || jsbridge.nativeCB()
+  anrdoid活ios只要执行类似JSBridgeCB('scd3fdfs','{"bar":"来自native的消息!"}')
+  例子:
   jsbridge.callNative('foo',{a:'foo',b:['测试']},function(data) {
-    alert(data.a);
+    alert(data);
   })
-}
-function openurl() {
-  jsbridge.callNative('openInBrowser',{url:'https://www.baidu.com/'},function(data) {
-    alert('打开了百度');
-  })
-}
-function share() {
-  var obj = {
-    title: 'test title 百度',
-    content: 'test content 百度首页',
-    imgUrl: 'https://www.baidu.com/',
-    shareUrl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png?foo=1&bar=2',
-    channel: 47
+  </pre>
+  <p onclick="share()">新的分享测试!!!</p>
+  <p onclick="openurl()">在默认浏览器打开连接</p>
+  <p onclick="scan()">扫描条形码</p>
+  <p onclick="exit()">关闭当前webview</p>
+  <div style="margin:10px 0">
+    <button onclick="photo('camera',true)">相机剪裁</button>
+    <button onclick="photo('camera',false)">相机不剪裁</button>
+  </div>
+  <div>
+    <button onclick="photo('gallery',true)">相册剪裁</button>
+    <button onclick="photo('gallery',false)">相册不剪裁</button>
+  </div>
+  <img src="" id="uploadImg">
+  <p id="imgTxt"></p>
+  <script type="text/javascript">
+  var jsbridge;
+  window.onload=function() {
+    jsbridge=new JSBridge();
   }
-  jsbridge.callNative('share',obj,function(data) {
-    switch (data.status) {
-      case 0:
-        alert('分享失败')
-        return ;
-      case 1:
-        alert('分享成功')
-        return ;
-      case 2:
-        alert('app外取消')
-        return ;
-      case 3:
-        alert('app内点击取消按钮或分享框上方遮罩')
-        return ;
-      default:
-        alert(JSON.stringify(data))
-        return;
+  var off;
+  function onEvent(){
+    off=jsbridge.on('myevent',function(e) {
+      alert(e.data);
+    })
+    alert('绑定成功!');
+  }
+  function offEvent(){
+    off && off();
+    alert('解绑成功!');
+  }
+  function callNative(){
+    jsbridge.callNative('foo',{a:'foo',b:['测试']},function(data) {
+      alert(data.a);
+    })
+  }
+  function openurl() {
+    jsbridge.callNative('openInBrowser',{url:'https://www.baidu.com/'},function(data) {
+      alert('打开了百度');
+    })
+  }
+  function exit() {
+    jsbridge.callNative('exit')
+  }
+  function share() {
+    var obj = {
+      title: 'test title 百度',
+      content: 'test content 百度首页',
+      imgUrl: 'https://www.baidu.com/',
+      shareUrl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png?foo=1&bar=2',
+      channel: 47
     }
-  })
-}
-</script>
+    jsbridge.callNative('share',obj,function(data) {
+      switch (data.status) {
+        case 0:
+          alert('分享失败')
+          return ;
+        case 1:
+          alert('分享成功')
+          return ;
+        case 2:
+          alert('app外取消')
+          return ;
+        case 3:
+          alert('app内点击取消按钮或分享框上方遮罩')
+          return ;
+        default:
+          alert(JSON.stringify(data))
+          return;
+      }
+    })
+  }
+  function scan() {
+    var obj = {type: 'bar'}
+    jsbridge.callNative('scan',obj,function(data) {
+      switch (data.status) {
+        case 0:
+          alert('扫描失败,code：'+ data.code)
+          return ;
+        case 1:
+          alert('扫描成功，code：'+ data.code)
+          return ;
+        default:
+          alert(JSON.stringify(data))
+          return;
+      }
+    })
+  }
+  function photo(fr,editable) {
+    var img = document.getElementById('uploadImg'),
+        txt = document.getElementById('imgTxt')
+    var obj = {
+      "from": fr,
+      "quality": 75,
+      "maxWidth": 500,
+      "maxHeight": 500,
+      "edit": editable, //是否剪裁
+    }
+    jsbridge.callNative('getPhoto',obj,function(data) {
+      txt.innerHTML = JSON.stringify(data)
+      switch (data.status) {
+        case 0:
+          alert('失败,'+ data.errMsg)
+          return ;
+        case 1:
+          img.src = data.imgUrl
+          alert('成功，url：'+ data.imgUrl)
+          return ;
+        case 2:
+          alert('用户取消，errMsg：'+ data.errMsg)
+          return ;
+        default:
+          alert(JSON.stringify(data))
+          return;
+      }
+    })
+  }
+  </script>
+</body>
 </html>
