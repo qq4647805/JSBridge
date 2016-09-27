@@ -11,7 +11,7 @@
 <body>
   <h1>JSBridge测试</h1>
   <p onclick="onEvent()">jsbridge.on('myevent') 绑定监听事件</p>
-  <p onclick="JSBridgeDispatch('myevent','事件触发成功!');">JSBridgeDispatch || jsbridge.dispatchEvent('myevent') 触发监听事件</p>
+  <p onclick="console.log(JSBridgeDispatch('myevent','事件触发成功!'));">JSBridgeDispatch || jsbridge.dispatchEvent('myevent') 触发监听事件</p>
   <p onclick="offEvent()">解绑监听事件</p>
   <p onclick="jsbridge.callNative('wenba://xuebajun?view=purchase')">页面：跳转商品列表页面</p>
   <p onclick="jsbridge.callNative('wenba://xuebajun?view=live')">页面：跳转拍照答疑页面</p>
@@ -35,6 +35,7 @@ var off;
 function onEvent(){
   off=jsbridge.on('myevent',function(e) {
     alert(e.data);
+    e.preventDefault()
   })
   alert('绑定成功!');
 }

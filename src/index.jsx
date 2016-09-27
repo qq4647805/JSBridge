@@ -105,7 +105,7 @@ class JSBridge {
     let e=document.createEvent('HTMLEvents');
     e.initEvent(event, false, true);
     e.data=data;
-    this._.doc.dispatchEvent(e);
+    return this._.doc.dispatchEvent(e);
   }
 }
 export default JSBridge;
