@@ -37,12 +37,38 @@
   </div>
   <img src="" id="uploadImg">
   <p id="imgTxt"></p>
+  <hr/>
+  <h3>native返回事件监听</h3>
+  <p>
+  native调用:JSBridgeDispatch('nativeBack')
+  </p>
+  <p>返回false为webview想要阻止次事件,返回true为走默认逻辑</p>
+  切换事件阻止:<button onclick="switchNativeBack(this)">不阻止</button>
+  <hr/>
   <script type="text/javascript">
   var jsbridge;
   window.onload=function() {
     jsbridge=new JSBridge();
+    jsbridge.on('nativeBack',function(e) {
+      alert('navtive点击返回!');
+      if(stopBack){
+        alert('返回false,阻止返回事件')
+        e.preventDefault()
+      }else{
+        alert('返回true,走默认流程')
+      }
+    })
   }
   var off;
+  var stopBack=false;
+  function switchNativeBack(t) {
+    stopBack=!stopBack
+    if(stopBack){
+      t.innerHTML='阻止'
+    }else{
+      t.innerHTML='不阻止'
+    }
+  }
   function onEvent(){
     off=jsbridge.on('myevent',function(e) {
       alert(e.data);
