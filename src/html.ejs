@@ -50,6 +50,9 @@
   native调用:JSBridgeDispatch('webviewShow','来自native的数据~~~~(json也行)')
   </p>
   <a href="javascript:;" onclick="jsbridge.callNative('wenba://xuebajun?view=purchase')">页面：跳转商品列表页面</a>
+  <hr/>
+  <h3>在新的webview打开一个url</h3>
+  <a href="javascript:;" onclick="openNewWebViewurl()">在新的webview打开一个百度</a>
   <script type="text/javascript">
   var jsbridge;
   window.onload=function() {
@@ -95,6 +98,11 @@
   }
   function openurl() {
     jsbridge.callNative('openInBrowser',{url:'https://www.baidu.com/'},function(data) {
+      alert('打开了百度');
+    })
+  }
+  function openNewWebViewurl() {
+    jsbridge.callNative('openInNewVewView',{url:'https://www.baidu.com/'},function(data) {
       alert('打开了百度');
     })
   }
