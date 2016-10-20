@@ -45,6 +45,11 @@
   <p>返回false为webview想要阻止次事件,返回true为走默认逻辑</p>
   切换事件阻止:<button onclick="switchNativeBack(this)">不阻止</button>
   <hr/>
+  <h3>native跳转返回</h3>
+  <p>
+  native调用:JSBridgeDispatch('webviewShow','来自native的数据~~~~(json也行)')
+  </p>
+  <p onclick="jsbridge.callNative('wenba://xuebajun?view=live')">页面：跳转拍照答疑页面</p>
   <script type="text/javascript">
   var jsbridge;
   window.onload=function() {
@@ -57,6 +62,10 @@
       }else{
         alert('返回true,走默认流程')
       }
+    })
+    jsbridge.on('webviewShow',function(e) {
+      alert('回到webview了');
+      alert('回传数据'+e.data);
     })
   }
   var off;
