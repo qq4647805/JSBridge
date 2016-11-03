@@ -8,7 +8,6 @@ class JSBridge {
   }
   _(){
     const ua=/xuebajun\/([\d\.]+)/.exec(navigator.userAgent);
-    alert(navigator.userAgent)
     if(ua){
       if(/\./.test(ua[1])){
         ua[1]=ua[1].split('.').map(v=>(((v-0)+Math.pow(10,3))+'').substring(1)).join('')-0;
