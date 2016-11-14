@@ -1,7 +1,7 @@
 # JSBridge
 > js与native交互
 
-线上地址 http://static.xueba100.com/frontend/JSBridge/latest/dist/lib/JSBridge.min.js
+线上地址:http://static.xueba100.com/frontend/JSBridge/latest/dist/lib/JSBridge.min.js
 
 ## 安装
 
