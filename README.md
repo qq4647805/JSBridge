@@ -1,13 +1,6 @@
 # JSBridge
 > js与native交互
 
-线上地址:https://static.xueba100.com/frontend/JSBridge/latest/dist/lib/JSBridge.min.js
-
-## 安装
-
-```
-npm install git+ssh://git@116.236.249.238:9922/frontend/JSBridge.git --save
-```
 
 ## 运行
 ```
@@ -29,11 +22,6 @@ npm run test
 
   var jsbrage=new JSBridge();
 
-  //是否在学霸君app
-  console.log(jsbridge.XBJ_APP);
-  //是学霸君app版本
-  console.log(jsbridge.VERSION);
-  /****可以在源码的extends方法里面写兼容老版本app的扩展******/
 
 
   //调用native 返回callback里面未被回调的函数个数
